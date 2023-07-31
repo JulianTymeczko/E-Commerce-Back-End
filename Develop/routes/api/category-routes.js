@@ -46,17 +46,22 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  // delete a category by its `id` value
-  Category.destroy({
+  // delete a category by its `id` value (remove reference in product table first)
+  Product.update({ category_id: null }, {
     where: {
-      id: req.params.id,
-    },
-  })
-    .then((category) => res.status(200).json(category))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+      category_id: req.params.id
+    }
+  }).then(() => {
+    Category.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((category) => res.status(200).json(category))
+  }).catch((err) => {
+    console.log(err);
+    res.status(400).json(err);
+  });
 });
 
 module.exports = router;
