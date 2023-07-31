@@ -11,3 +11,8 @@ E-commerce website.
 
 
 ## Walkthrough Video
+
+
+
+https://github.com/JulianTymeczko/E-Commerce-Back-End/assets/130944880/0682fb4a-30b2-4eb7-b3cf-4d7642dd0726
+
